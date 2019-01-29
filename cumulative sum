@@ -1,0 +1,20 @@
+SELECT acct_num, amt, SUM(amt) OVER (PARTITION BY acct_num ORDER BY acct_num ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) cum_sum
+FROM test;
+
+I/P
+----
+1 18
+1 15
+1 10
+2 10
+2 5
+2 10
+O/P
+-----
+
+1 18 18.0
+1 15 33.0
+1 10 43.0
+2 10 10.0
+2 5 15.0
+2 10 25.0
