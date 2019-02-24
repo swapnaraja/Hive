@@ -1,8 +1,0 @@
-with accts as (
-select a,b,c from accounts)
-
--- to insert into new table
-
-FROM accts
-INSERT INTO <TABLE> PARTITION () SELECT * where <>  -- dont give ; at the eof with scope is gone when ; encounters
-INSERT INTO <TABLE> PARTITION () SELECT * where <>;
