@@ -1,0 +1,12 @@
+with acct as (
+SELECT `(dup_rank)?+.+` FROM
+(
+select row_number() OVER (PARTITION BY num,tr_id,amt ORDER BY purch_dt desc, tr_dt desc) as dup_rank
+FROM <TABLE> 
+)a
+where a.dup_rank=1
+)
+
+
+differences between row_number ,rank ,dense rank
+http://dwgeek.com/hadoop-hive-analytic-functions-examples.html/

@@ -1,0 +1,9 @@
+
+https://cwiki.apache.org/confluence/display/Hive/DynamicPartitions
+CTAS – syntax is a little bit different from CTAS on non-partitioned tables, since the schema of the target table is not totally derived from the select-clause. We need to specify the schema including partitioning columns in the create-clause. e.g.,
+CREATE TABLE T (key int, value string) PARTITIONED BY (ds string, hr int) AS
+SELECT key, value, ds, hr+1 hr1 FROM srcpart WHERE ds is not null and hr>10;
+The above example shows the case of all DP columns in CTAS. If you want put some constant for some partitioning column, you can specify it in the select-clause. e.g,
+
+CREATE TABLE T (key int, value string) PARTITIONED BY (ds string, hr int) AS
+SELECT key, value, "2010-03-03", hr+1 hr1 FROM srcpart WHERE ds is not null and hr>10;
