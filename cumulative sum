@@ -18,3 +18,45 @@ O/P
 2 10 10.0
 2 5 15.0
 2 10 25.0
+
+
+I/P
+----
+1 18
+1 15
+1 10
+2 10
+2 5
+2 10
+
+
+o/p
+----
+1 18 0
+1 10 18
+1 15 10
+SELECT acct_num, amt, LAG(amt,1,0) OVER (PARTITION BY acct_num) as past_amt
+FROM test; 
+
+
+I/P
+----
+1 18
+1 15
+1 10
+2 10
+2 5
+2 10
+
+
+o/p
+----
+1 18 10
+1 10 15
+1 15 0
+
+
+
+
+SELECT acct_num, amt, LEAD(amt,1,0) OVER (PARTITION BY acct_num) as past_amt
+FROM test; 
